@@ -1,2 +1,2 @@
 # Athena-Exporter
-Athena exporter for prometheus using python, project in development and will be used to monitor costs os AWS using aws CUR
+Athena exporter for prometheus using python, project in development and will be used to monitor AWS costs, using aws CUR
