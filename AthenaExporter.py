@@ -46,7 +46,7 @@ class CustomCollector(object):
         yield g
 
 if __name__ == '__main__':
-    start_http_server(9103)
+    start_http_server(8080)
     REGISTRY.register(CustomCollector())
     while True:
         time.sleep(1)
