@@ -1,5 +1,12 @@
 version: '3.7'
 services:
+<<<<<<< HEAD
+=======
+  app:
+    image: preichmann/athena-exporter
+    volumes:
+    - /home/lgomes/.aws/credentials:/home/app/.aws/credentials:ro
+>>>>>>> 2a906b1... Added the configurable env variables
   web:
     build: .
     ports:

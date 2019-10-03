@@ -14,17 +14,17 @@ class CustomCollector(object):
 
         print "Iniciando a query no athena..."
         
-        client = boto3.client('athena', region_name='us-east-1')
+        client = boto3.client('athena', region_name=os.environ['REGION'])
         
         queryId = client.start_query_execution(
-                QueryString='SELECT SUM(line_item_blended_cost) FROM default.awsbilling WHERE line_item_resource_id like \'%snap-%\' AND cast(month(current_date)AS DECIMAL) = cast(month AS DECIMAL) group by month order by month desc',
+                QueryString=os.environ['QUERY_1'],
                 ResultConfiguration={
-                        'OutputLocation': 's3://aws-athena-query-results-701085748382-us-east-1/users/',
+                        'OutputLocation': os.environ['BUCKET_OUTPUT'],
                         'EncryptionConfiguration': {
                     'EncryptionOption': 'SSE_S3'
                     }
                 },
-                WorkGroup='ANALYTICS_USERS'
+                WorkGroup=os.environ['WORKGROUP']
         )["QueryExecutionId"]
         
         while(client.get_query_execution(QueryExecutionId=queryId)["QueryExecution"]["Status"]["State"] == 'RUNNING'):
